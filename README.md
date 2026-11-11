@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MOTIFLO website
 
-## Getting Started
+Next.js 16 (App Router, Cache Components) + TypeScript + Tailwind CSS v4. All pages are statically prerendered, which suits SEO and AI-search crawlers.
 
-First, run the development server:
-
+## Run
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where to edit
+| What | File |
+|---|---|
+| Price, edition, colours, specs, in-the-box, links (Amazon, WhatsApp, email, domain), season/order-by date | `src/lib/site.ts` |
+| FAQs | `src/lib/faqs.ts` |
+| Shipping / returns / warranty / privacy / terms drafts | `src/lib/policies.ts` (have them reviewed) |
+| Pages | `src/app/**/page.tsx` |
+| Lamp illustration (stand-in for photos) | `src/components/LampVisual.tsx` |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Specs marked `verify: true` show a yellow "verify" tag in dev builds. They come from the reference product; measure our units before launch.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pages
+`/` home · `/lamp` product (Product + Offer + FAQ JSON-LD) · `/gifts/christmas` gift guide · `/corporate-gifting` enquiry form (opens WhatsApp/email, no backend) · `/our-story` · `/faq` · `/contact` · `/policies/{shipping,returns,warranty,privacy,terms}` · `sitemap.xml`, `robots.txt` (AI crawlers allowed), `/llms.txt`, generated OG image.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Before launch
+1. Fill `site.ts`: domain, WhatsApp number, Amazon URL, legal name. Confirm the price decision.
+2. Add real product photos/video (put them in `public/` and use `next/image`).
+3. Replace the Our Story text; get the policies reviewed.
+4. Add analytics (GA4 / Vercel Analytics) and Amazon Attribution links.
+5. Direct checkout (Razorpay/Cashfree) as a later phase: payment verification on the server via a route handler.
+6. Deploy (Vercel recommended).
+# lamp-website
