@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LampVisual } from "@/components/LampVisual";
-import { VideoDemo } from "@/components/VideoDemo";
+import { ChristmasVideo } from "@/components/ChristmasVideo";
 import { LeadForm } from "@/components/LeadForm";
 import { BuyButtons } from "@/components/BuyButtons";
 import { FaqList, faqJsonLd } from "@/components/FaqList";
@@ -69,14 +69,18 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* VIDEO */}
+      {/* VIDEO (Christmas spot with voiceover + music) */}
       <Section className="pb-0 sm:pb-0">
-        <Container>
-          <div className="max-w-2xl">
+        <Container className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
+          <div className="max-w-xl">
             <Eyebrow>Watch it move</Eyebrow>
-            <H2 className="mt-4">Fifteen seconds is all it takes.</H2>
+            <H2 className="mt-4">Twenty seconds. Sound on.</H2>
+            <p className="mt-6 text-lg leading-relaxed text-muted">
+              A gift box, a little light, and one shake. See why MOTIFLO is the present that ends up on their desk, not in a drawer.
+            </p>
+            <p className="mt-4 text-sm text-muted">Press <strong className="text-ink">🔊 Tap for sound</strong> on the video to hear the music and narration.</p>
           </div>
-          <VideoDemo className="mt-10" />
+          <ChristmasVideo />
         </Container>
       </Section>
 
