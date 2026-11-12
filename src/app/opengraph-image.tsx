@@ -11,7 +11,7 @@ export default function OgImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 36, letterSpacing: 12 }}>MOTIFLO</div>
           <div style={{ fontSize: 84, marginTop: 30, lineHeight: 1.05, maxWidth: 640 }}>Light, with a little movement.</div>
-          <div style={{ fontSize: 28, marginTop: 30, color: "#ffc774" }}>Shake-to-reshape mini mood lamp</div>
+          <div style={{ fontSize: 28, marginTop: 30, color: "#ffc774" }}>Shake-to-reshape mini mood lamp · $29 · Free US shipping</div>
         </div>
         <div style={{ width: 170, height: 420, borderRadius: 85, border: "3px solid rgba(255,255,255,0.35)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 120px 30px rgba(255,180,90,0.35)" }}>
           <div style={{ width: 10, height: 330, borderRadius: 5, background: "#ffc774", boxShadow: "0 0 30px 10px rgba(255,190,100,0.8)" }} />

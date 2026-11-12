@@ -50,7 +50,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" suppressHydrationWarning className={`${cormorant.variable} ${inter.variable} antialiased`}>
+    <html lang={site.lang} suppressHydrationWarning className={`${cormorant.variable} ${inter.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         {/* Hides order-by messaging after the season cut-off, before first paint (static-safe). */}
         <script

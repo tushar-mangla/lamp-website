@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { site, whatsappLink } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const fields = [
   { name: "name", label: "Your name", type: "text", required: true, autoComplete: "name" },
@@ -30,16 +30,14 @@ export function CorporateForm() {
       });
       if (res.ok) { setSent("saved"); return; }
     } catch {}
-    // 2) Fallback: open WhatsApp/email with everything prefilled.
+    // 2) Fallback: open email with everything prefilled.
     const lines = [
-      "Corporate gifting enquiry: MOTIFLO",
+      "Corporate gifting inquiry: MOTIFLO",
       ...fields.map((f) => `${f.label}: ${data.get(f.name) || "-"}`),
       `Message: ${data.get("message") || "-"}`,
     ];
     const text = lines.join("\n");
-    const wa = whatsappLink(text);
-    const href = wa || `mailto:${site.email}?subject=${encodeURIComponent("Corporate gifting enquiry")}&body=${encodeURIComponent(text)}`;
-    window.open(href, wa ? "_blank" : "_self", "noopener");
+    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent("Corporate gifting inquiry")}&body=${encodeURIComponent(text)}`;
     setSent("fallback");
   }
 
@@ -48,7 +46,7 @@ export function CorporateForm() {
       <p className="font-display text-3xl">Get a quote</p>
       <p className="mt-1 text-sm text-muted">From 10 lamps. Smaller orders? Use the regular shop.</p>
       <p id="corp-note" className="mt-2 text-sm text-muted">
-        We&apos;ll reply within one working day.
+        We&apos;ll reply within one business day.
       </p>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         {fields.map((f) => (
@@ -66,15 +64,15 @@ export function CorporateForm() {
           </label>
         ))}
         <label className="flex flex-col gap-1.5 text-sm sm:col-span-2">
-          <span className="font-medium">Anything else? (logo card, addresses, budget)</span>
+          <span className="font-medium">Anything else? (logo card, ship-to addresses, budget)</span>
           <textarea name="message" rows={4} className="rounded-xl border border-charcoal/20 bg-white px-4 py-3 text-base outline-none transition focus:border-brass-deep" />
         </label>
       </div>
       <button type="submit" className="mt-6 w-full rounded-full bg-ink px-6 py-4 font-medium text-ivory transition hover:bg-charcoal">
-        Send enquiry
+        Send inquiry
       </button>
-      {sent === "saved" && <p role="status" className="mt-4 text-sm text-brass-deep">Thanks! We&apos;ve got your enquiry and will reply within one working day.</p>}
-      {sent === "fallback" && <p role="status" className="mt-4 text-sm text-brass-deep">{site.whatsapp ? "WhatsApp" : "Your email app"} should open with your details filled in. Just hit send. If nothing opened, email {site.email}.</p>}
+      {sent === "saved" && <p role="status" className="mt-4 text-sm text-brass-deep">Thanks! We&apos;ve got your inquiry and will reply within one business day.</p>}
+      {sent === "fallback" && <p role="status" className="mt-4 text-sm text-brass-deep">Your email app should open with your details filled in. Just hit send. If nothing opened, email {site.email}.</p>}
     </form>
   );
 }

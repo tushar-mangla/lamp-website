@@ -25,7 +25,7 @@ export default async function PolicyPage({ params }: PageProps<"/policies/[slug]
       <Section>
         <Container className="max-w-3xl">
           {process.env.NODE_ENV !== "production" && (
-            <p className="mb-8 rounded-xl bg-glow/30 px-4 py-3 text-sm">Draft: review with your CA/lawyer and fill the bracketed items before launch.</p>
+            <p className="mb-8 rounded-xl bg-glow/30 px-4 py-3 text-sm">Draft: review with a US attorney and fill the bracketed items before launch.</p>
           )}
           <div className="space-y-8">
             {p.sections.map((s) => (

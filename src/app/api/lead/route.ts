@@ -1,7 +1,7 @@
 /**
- * Lead capture (reminders + corporate enquiries).
+ * Lead capture (reminders + corporate inquiries).
  * Forwards JSON to LEAD_WEBHOOK_URL (Google Apps Script, Zapier, Make, Slack, etc.).
- * If no webhook is configured it returns 503 and the UI falls back to email/WhatsApp,
+ * If no webhook is configured it returns 503 and the UI falls back to a prefilled email,
  * so a lead is never silently lost.
  */
 type Lead = { kind: "reminder" | "corporate"; contact: string; name?: string; details?: Record<string, string> };

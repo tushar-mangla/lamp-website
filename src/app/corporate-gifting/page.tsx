@@ -5,22 +5,22 @@ import { Container, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Corporate gifting & Secret Santa",
-  description: "MOTIFLO mood lamps for teams and clients: 10+ units, your note card, GST invoice, delivery to one or many addresses across India.",
+  description: "MOTIFLO mood lamps for teams and clients: 10+ units, volume pricing, your note card, one invoice, delivery to one office or every home address in the US.",
   alternates: { canonical: "/corporate-gifting" },
 };
 
 const perks = [
-  ["10+ lamps", "Team pricing on request for 10, 25, 50 or more."],
+  ["10+ lamps", "Volume pricing on request for 10, 25, 50 or more."],
   ["Your message", "A printed note card with your company message (and logo, on request)."],
-  ["GST invoice", "Proper tax invoice for your accounts team."],
-  ["Delivery your way", "To your office, or to each person's address."],
+  ["One invoice", "A proper invoice for accounts, plus a W-9 on request."],
+  ["Ship anywhere in the US", "To your office, or to each remote teammate's home."],
 ];
 
 export default function Corporate() {
   return (
     <>
       <PageHeader eyebrow="Teams & clients" title="A desk gift people actually keep.">
-        Secret Santa, Diwali, onboarding kits or client thank-yous. MOTIFLO is universal, beautiful on a desk and arrives gift-boxed.
+        Holiday parties, Secret Santa, client thank-yous or onboarding kits. MOTIFLO is universal, beautiful on a desk and arrives gift-boxed.
       </PageHeader>
       <Section>
         <Container className="grid gap-14 md:grid-cols-2">

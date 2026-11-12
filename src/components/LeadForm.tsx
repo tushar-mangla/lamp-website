@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { season, site } from "@/lib/site";
 
-/** "Remind me" capture: email or WhatsApp number. Falls back to a prefilled email if the backend isn't configured. */
+/** "Remind me" capture (email). Falls back to a prefilled email if the backend isn't configured. */
 export function LeadForm({ tone = "light", title, text }: { tone?: "light" | "dark"; title?: string; text?: string }) {
   const [state, setState] = useState<"idle" | "sending" | "done" | "fallback" | "error">("idle");
   const [error, setError] = useState("");
@@ -36,17 +36,18 @@ export function LeadForm({ tone = "light", title, text }: { tone?: "light" | "da
   return (
     <div>
       <p className={`font-display text-3xl ${dark ? "text-ivory" : ""}`}>{title ?? `Not ready yet? We'll remind you before ${season.occasion}.`}</p>
-      <p className={`mt-2 text-sm ${dark ? "text-ivory/65" : "text-muted"}`}>{text ?? "One reminder before the order-by date. No spam."}</p>
+      <p className={`mt-2 text-sm ${dark ? "text-ivory/65" : "text-muted"}`}>{text ?? "One email before the order-by date. No spam, unsubscribe anytime."}</p>
       {state === "done" ? (
         <p role="status" className={`mt-5 font-medium ${dark ? "text-glow" : "text-brass-deep"}`}>Done. We&apos;ll remind you. ✦</p>
       ) : (
         <form onSubmit={onSubmit} className="mt-5 flex flex-col gap-3 sm:flex-row">
-          <label className="sr-only" htmlFor="lead-contact">Email or WhatsApp number</label>
+          <label className="sr-only" htmlFor="lead-contact">Email address</label>
           <input
             id="lead-contact"
             name="contact"
+            type="email"
             required
-            placeholder="Email or WhatsApp number"
+            placeholder="Your email address"
             autoComplete="email"
             className={`h-12 flex-1 rounded-full border px-5 text-base outline-none transition ${dark ? "border-ivory/25 bg-ivory/5 text-ivory placeholder:text-ivory/45 focus:border-glow" : "border-charcoal/20 bg-white focus:border-brass-deep"}`}
           />

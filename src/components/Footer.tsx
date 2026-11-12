@@ -2,8 +2,8 @@ import Link from "next/link";
 import { product, seller, site } from "@/lib/site";
 
 const cols = [
-  { title: "Shop", links: [["/lamp", "The Lamp"], ["/gifts/christmas", "Christmas gifts"], ["/corporate-gifting", "Corporate gifting"]] },
-  { title: "Help", links: [["/faq", "FAQ"], ["/contact", "Contact"], ["/policies/shipping", "Shipping"], ["/policies/returns", "Returns & replacements"], ["/policies/warranty", "Warranty"]] },
+  { title: "Shop", links: [["/gifts/christmas", "Holiday Shop"], ["/lamp", "The Lamp"], ["/corporate-gifting", "Corporate gifting"]] },
+  { title: "Help", links: [["/faq", "FAQ"], ["/contact", "Contact"], ["/policies/shipping", "Shipping"], ["/policies/returns", "Returns"], ["/policies/warranty", "Warranty"]] },
   { title: "Brand", links: [["/our-story", "Our story"], ["/policies/privacy", "Privacy"], ["/policies/terms", "Terms"]] },
 ] as const;
 
@@ -32,15 +32,9 @@ export function Footer() {
       <div className="border-t border-ivory/10">
         <div className="mx-auto grid max-w-6xl gap-2 px-4 py-6 text-xs text-ivory/55 sm:px-6 md:grid-cols-2">
           <p>
-            Sold by {seller.legalName || "[legal entity]"}{seller.address ? `, ${seller.address}` : ""}
-            {seller.gstin ? ` · GSTIN ${seller.gstin}` : ""} · Country of origin: {product.countryOfOrigin}
+            Sold by {seller.legalName || "[legal entity]"}{seller.address ? `, ${seller.address}` : ""} · Made in {product.countryOfOrigin}
           </p>
-          <p className="md:text-right">
-            Grievance officer: {seller.grievanceOfficer.name || "[name]"} ·{" "}
-            {seller.grievanceOfficer.email ? <a className="hover:text-glow" href={`mailto:${seller.grievanceOfficer.email}`}>{seller.grievanceOfficer.email}</a> : "[email]"}
-            {seller.grievanceOfficer.phone ? ` · ${seller.grievanceOfficer.phone}` : ""}
-          </p>
-          <p className="md:col-span-2">© {site.year} {site.name}. Prices in INR, inclusive of GST.</p>
+          <p className="md:text-right">© {site.year} {site.name}. Prices in USD. Ships within the US.</p>
         </div>
       </div>
     </footer>

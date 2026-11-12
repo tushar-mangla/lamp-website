@@ -9,11 +9,11 @@ import { DeliveryInfo } from "@/components/DeliveryInfo";
 import { VideoDemo } from "@/components/VideoDemo";
 import { Container, Eyebrow, H2, Section } from "@/components/ui";
 import { productFaqs } from "@/lib/faqs";
-import { formatINR, media, product, shipping, site } from "@/lib/site";
+import { formatPrice, media, product, shipping, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `${product.name}: ${product.edition}`,
-  description: `Cordless shake-to-reshape mini mood lamp with a magnetic LED filament. Battery-tested, gift-boxed, 1-year India replacement warranty. ${formatINR(product.price)} incl. GST.`,
+  description: `Cordless shake-to-reshape mini mood lamp with a magnetic LED filament. ${formatPrice(product.price)}, gift-boxed, battery-tested, 1-year warranty, free US shipping.`,
   alternates: { canonical: "/lamp" },
 };
 
@@ -42,20 +42,21 @@ export default function LampPage() {
             seller: { "@type": "Organization", name: site.name },
             shippingDetails: {
               "@type": "OfferShippingDetails",
-              shippingRate: { "@type": "MonetaryAmount", value: shipping.freeShipping ? 0 : shipping.feeInr, currency: site.currency },
-              shippingDestination: { "@type": "DefinedRegion", addressCountry: "IN" },
+              shippingRate: { "@type": "MonetaryAmount", value: shipping.freeShipping ? 0 : shipping.feeUsd, currency: site.currency },
+              shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
               deliveryTime: {
                 "@type": "ShippingDeliveryTime",
-                handlingTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2, unitCode: "DAY" },
+                handlingTime: { "@type": "QuantitativeValue", minValue: shipping.handlingMin, maxValue: shipping.handlingMax, unitCode: "DAY" },
                 transitTime: { "@type": "QuantitativeValue", minValue: shipping.minDeliveryDays, maxValue: shipping.maxDeliveryDays, unitCode: "DAY" },
               },
             },
             hasMerchantReturnPolicy: {
               "@type": "MerchantReturnPolicy",
-              applicableCountry: "IN",
+              applicableCountry: "US",
               returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
               merchantReturnDays: shipping.returnDays,
               returnMethod: "https://schema.org/ReturnByMail",
+              // TODO(founder): set returnFees once return-label policy is decided (FreeReturn / ReturnFeesCustomerResponsibility).
             },
           },
         }}
@@ -74,21 +75,19 @@ export default function LampPage() {
             <p className="mt-4 text-lg text-muted">Shake-to-reshape magnetic filament · cordless · warm 2700K</p>
 
             <p className="mt-8 flex items-baseline gap-3">
-              <span className="text-3xl font-medium">{formatINR(product.price)}</span>
-              {product.compareAt && <s className="text-muted">{formatINR(product.compareAt)}</s>}
-              <span className="text-sm text-muted">incl. GST</span>
+              <span className="text-3xl font-medium">{formatPrice(product.price)}</span>
+              {product.compareAt && <s className="text-muted">{formatPrice(product.compareAt)}</s>}
+              <span className="text-sm text-muted">{shipping.freeShipping ? "Free US shipping" : "+ shipping"} · gift box included</span>
             </p>
-
-            <p className="mt-1 text-xs text-muted">MRP {formatINR(product.mrp)} (incl. of all taxes) · Country of origin: {product.countryOfOrigin}</p>
 
             <ProductBuy />
             <DeliveryInfo />
 
             <ul className="mt-8 space-y-3 rounded-2xl bg-ivory-soft p-6 text-sm">
-              <li>✦ <strong>Battery-tested</strong> before dispatch</li>
-              <li>✦ <strong>1-year India replacement</strong> warranty</li>
+              <li>✦ <strong>Battery-tested</strong> before it ships</li>
+              <li>✦ <strong>1-year replacement</strong> warranty · {shipping.returnDays}-day returns</li>
               <li>✦ Keepsake <strong>gift box</strong> + gift note card</li>
-              <li>✦ About <strong>14 cm tall</strong>: a mini mood light, not a reading lamp</li>
+              <li>✦ About <strong>5.7 in tall</strong>: a mini mood light, not a reading lamp</li>
             </ul>
 
             <div className="mt-12">
